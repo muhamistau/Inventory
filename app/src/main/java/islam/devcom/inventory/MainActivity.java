@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         // input barang
         for (int i = 0; i < 5; i++) {
             barangList.add(namaBarang[i]);
+
 //            barangs[i] = new Barang(i, namaBarang[i], hargaBarang[i]);
 //            barangs2[i] = new Barang(i, namaBarang[i] + "2", hargaBarang[i] * 3);
         }

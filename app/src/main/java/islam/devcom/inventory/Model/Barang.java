@@ -11,4 +11,16 @@ public class Barang {
         this.nama = namas;
         this.harga = hargas;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public int getHarga() {
+        return harga;
+    }
 }

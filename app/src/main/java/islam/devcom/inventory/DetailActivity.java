@@ -1,7 +1,7 @@
 package islam.devcom.inventory;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
@@ -14,8 +14,8 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         textView = findViewById(R.id.namaBarang);
-        textView.setText(
-                getIntent().getStringExtra("namaBarang") + "\n" + "Rp" +
+        textView.setText("Nama: " +
+                getIntent().getStringExtra("namaBarang") + "\n" + "Harga: Rp" +
                         getIntent().getIntExtra("hargaBarang", 0)
         );
 

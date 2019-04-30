@@ -4,7 +4,7 @@ public class Barang {
     public int id;
     public String nama;
     // harga dalam USD
-    public int harga;
+    public int harga = 0;
 
     public Barang(int ids, String namas, int hargas) {
         this.id = ids;

@@ -1,13 +1,13 @@
 package islam.devcom.inventory;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     String textBarang;
 
+    EditText namaEditText;
+    EditText hargaEditText;
+    ArrayList<Barang> listBarang = new ArrayList<>();
+    BarangAdapter arrayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        textView = findViewById(R.id.textView1);
         listView = findViewById(R.id.listView);
+        namaEditText = findViewById(R.id.namaEditText);
+        hargaEditText = findViewById(R.id.hargaEditText);
 
         final String[] namaBarang = {
                 "sampo", "sabun", "sendal", "sepatu", "sendok",
@@ -46,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 1000, 2000, 3000, 4000, 5000
         };
 
-        final ArrayList<Barang> listBarang = new ArrayList<>();
+//        final ArrayList<Barang> listBarang = new ArrayList<>();
 
         listBarang.add(new Barang(1, "Sampo", 1000));
         listBarang.add(new Barang(2, "Sampo1", 2000));
@@ -59,10 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this,
-//                R.layout.list_view, R.id.textView, namaBarang);
+//                R.layout.list_view_item, R.id.textView, namaBarang);
 
-        ArrayAdapter<Barang> arrayAdapter = new ArrayAdapter<Barang>(MainActivity.this,
-                R.layout.list_view, R.id.textView, listBarang);
+//        ArrayAdapter<Barang> arrayAdapter = new ArrayAdapter<Barang>(MainActivity.this,
+//                R.layout.list_view_item, R.id.textView, listBarang);
+
+        arrayAdapter = new BarangAdapter(MainActivity.this, listBarang);
 
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -91,5 +100,17 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
 //        textView.setText(textBarang);
+    }
+
+    public void addItem(View view) {
+        Toast.makeText(MainActivity.this, "Add button clicked", Toast.LENGTH_SHORT)
+                .show();
+        String namaBarang = namaEditText.getText().toString();
+        int hargaBarang = Integer.parseInt(hargaEditText.getText().toString());
+        Log.d("barang+", namaBarang);
+        Log.d("barang+", hargaBarang + "");
+        listBarang.add(new Barang(listBarang.size() + 1, namaBarang, hargaBarang));
+
+        arrayAdapter.notifyDataSetChanged();
     }
 }
